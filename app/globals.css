@@ -13,6 +13,45 @@ body {
   flex-direction: column;
 }
 
+ul {
+  list-style: none;
+}
+
+.border {
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.heading-overview {
+  grid-area: 1/1/1/4;
+  text-align: center;
+}
+
+.product-overview {
+  height: 90%;
+  width: 100%;
+  border-color: red;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 1fr;
+  grid-template-rows: 0.5fr 3fr 3fr 0.5fr;
+}
+
+.list-control-container {
+  grid-area: 2/1/4/1;
+}
+
+.product-cards-container {
+  grid-area: 2/2/4/5;
+}
+
+.pagination-container {
+  grid-area: 4/2/4/4;
+}
+
+.product-card {
+  width: 50%;
+}
+
 .header {
   height: 5%;
   width: 100%;
@@ -24,3 +63,4 @@ body {
   width: 100%;
   background-color: black;
 }
+

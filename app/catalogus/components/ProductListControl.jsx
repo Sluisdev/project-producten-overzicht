@@ -4,7 +4,7 @@ import HeaderDropdown from './HeaderDropdown'
 
 export default function ProductListControl () {
     return (
-        <section className="list-control-container">
+        <section className="list-control-container border">
             <SearchField/>
             <Filter/>
             <Sort/>

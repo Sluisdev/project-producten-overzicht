@@ -1,21 +1,11 @@
 'use client'
 
-import {useState} from 'react'
+import {useState, Suspense} from 'react'
 import ProductListControl  from './ProductListControl'
 import ProductCard from './ProductCard'
+import Pagination from './Pagination'
+import {Product} from '@/app/catalogus/lib/types'
 
-export default function ProductOverview() {
-
-    return (
-        <section>
-            <h1>Alle Producten</h1>
-            <ProductListControl/>
-            <ul>
-                <ProductCard />
-            </ul>
-        </section>
-    )
-}
 
 // Auto-placement can detect whether an element already has a fixed position on the grid and will not place other grid items there. 
 

@@ -1,6 +1,6 @@
 export default function ProductCard () {
     return (
-        <li>
+        <li className="border product-card">
             <img src="" alt="product-img" />
             <div>
                 <h2>Main Heading</h2>
