@@ -13,14 +13,26 @@ export type Product = {
 
 export type ProductDetails = Omit<Product, 'rating'>
 
-export type Paginated = {
-    pages: number
-    products: ProductDetails[]
-}
+export type Sort = "asc" | "desc"
 
 export type Query = {
     filter: string
     search: string
-    sort: "asc" | "desc"
+    sort: Sort
     page?: string
 }
+
+export type Paginated = {
+    pages: number
+    paginatedProducts: ProductDetails[]
+}
+
+export type PageProps = {
+    searchParams:Promise<{
+        search: string
+        filter: string
+        sort: Sort
+        page: string
+    }>
+}
+

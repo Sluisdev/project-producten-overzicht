@@ -1,9 +1,9 @@
-export default function ProductCard () {
+export default function ProductCard ({details}) {
     return (
         <li className="border product-card">
             <img src="" alt="product-img" />
             <div>
-                <h2>Main Heading</h2>
+                <h2>{details.title}</h2>
                 <p>categorie</p>
             </div>
             <p>Omschrijving</p>

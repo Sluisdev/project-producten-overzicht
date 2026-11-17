@@ -42,10 +42,13 @@ ul {
 
 .product-cards-container {
   grid-area: 2/2/4/5;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr) 0.5fr;
 }
 
 .pagination-container {
-  grid-area: 4/2/4/4;
+  grid-area: 3/2/3/4;
 }
 
 .product-card {
