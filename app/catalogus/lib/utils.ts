@@ -20,8 +20,8 @@ export async function getModifiedProducts(query: Query):Promise<ProductDetails[]
         return
     }
     if (query.filter) products = filter(products, query.filter)
-    if (query.search) products = search(products, query.search)
-    if (query.sort) products = sort(products, query.sort)
+    if (query.zoek) products = search(products, query.zoek)
+    if (query.sorteer) products = sort(products, query.sorteer)
     console.log("products returned after modifications & pagination:", products)
     return products
 
@@ -40,19 +40,39 @@ export function paginate (products:ProductDetails[], pageNr:number = 1):Paginate
     }
 }
 
-export function getCategories () {
-    const data 
-} 
+export async function getCategories () {
+    const data = await fetchData()
+    if (!data) {
+        console.error("Error in functie getCategories")
+        return
+    }
+    const categories = data.map(e => (e.category))
+    return Array.from(new Set(categories))
+}
+
+export function capitalize(string: string) {
+    return `${string.slice(0, 1).toUpperCase()}${string.slice(1, string.length)}`
+}
+
+export function shortDescription(string: string) {
+    return `${string.slice(0, 150)}.....`
+}
+
+export function shortTitle(string: string) {
+    const result = string.split(" ").slice(0, 3).join(" ")
+    return result
+}
 
 function filter(products:ProductDetails[], filter:string) {
     return products.filter(p => (p.category === filter))
 }
 
 function search (products:ProductDetails[], term:string) {
-    console.log(term)
     return products.filter(p => (p.title.toLowerCase().includes(term.toLowerCase())))
 }
 
 function sort (products:ProductDetails[], order:string) {
-    return [...products].sort((a, b) => (order === "desc" ? b.price - a.price : a.price - b.price ))
+    const splitIndex = order.indexOf(" ")
+    const isDescening = order.slice(0, splitIndex - 1) === "aflopend"
+    return [...products].sort((a, b) => (isDescening ? b.price - a.price : a.price - b.price ))
 }

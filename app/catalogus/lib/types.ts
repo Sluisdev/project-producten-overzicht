@@ -17,8 +17,8 @@ export type Sort = "asc" | "desc"
 
 export type Query = {
     filter: string
-    search: string
-    sort: Sort
+    zoek: string
+    sorteer: Sort
     page?: string
 }
 
@@ -27,12 +27,10 @@ export type Paginated = {
     paginatedProducts: ProductDetails[]
 }
 
+type SearchParams = { [key: string]: string | string[] | undefined }
+
+
 export type PageProps = {
-    searchParams:Promise<{
-        search: string
-        filter: string
-        sort: Sort
-        page: string
-    }>
+    searchParams:Promise<SearchParams>
 }
 
