@@ -24,7 +24,6 @@ export async function getModifiedProducts(query: Partial<Query>):Promise<Product
     if (query.categorie) products = filter(products, query.categorie)
     if (query.zoek) products = search(products, query.zoek)
     if (query.sorteer) products = sort(products, query.sorteer)
-    console.log("products returned after modifications & pagination:", products)
     return products
 
 }

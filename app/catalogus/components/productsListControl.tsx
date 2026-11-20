@@ -27,7 +27,6 @@ export default function ProductListControl ({categories}:Categories) {
         replace(`${pathname}?${params.toString()}`)
     }
     const handleFilters = (name: string, value:string) => {
-        console.log("who called the function:", name, value)
         setFilterValues({...filterValues, [name]: value})
         updateParams(name, value)
     }
