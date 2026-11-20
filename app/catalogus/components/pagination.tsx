@@ -1,6 +1,6 @@
 'use client'
 
-import ArrowBtn from "./arrowBtn"
+import ArrowBtn from "@/app/catalogus/components/arrowBtn"
 import { useRouter } from 'next/navigation'
 
 export default function Pagination ({pages, currentPage}:{pages: number, currentPage: number}) {

@@ -1,14 +1,14 @@
 import Image from "next/image";
 
 import {Suspense} from 'react'
-import ProductListControl  from './components/productsListControl'
-import ProductCard from './components/productCard'
-import Pagination from './components/pagination'
+import ProductListControl  from '@/app/catalogus/components/productsListControl'
+import ProductCard from '@/app/catalogus/components/productCard'
+import Pagination from '@/app/catalogus/components/pagination'
 import {Product} from '@/app/catalogus/lib/types'
 import Cards from '@/app/catalogus/components/cardsContainer'
 import {PageProps} from '@/app/catalogus/lib/types'
 import {getCategories, capitalize} from '@/app/catalogus/lib/utils'
-import { geist } from "./lib/fonts";
+import { geist } from "@/app/catalogus/lib/fonts";
 
 
 

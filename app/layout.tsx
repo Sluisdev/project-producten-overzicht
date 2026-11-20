@@ -4,9 +4,9 @@ import "@/app/catalogus/styles/layout-page-styling.css";
 import "@/app/catalogus/styles/products-list-controls.css";
 import "@/app/catalogus/styles/products-styling.css";
 import "@/app/catalogus/styles/media-queries.css"
-import {Footer, Header} from "./global_components/DefaultUI"
+import {Footer, Header} from "@/app/global_components/DefaultUI"
 import Hero from '@/app/catalogus/components/hero'
-import { instrumentSans } from "./catalogus/lib/fonts";
+import { instrumentSans } from "@/app/catalogus/lib/fonts";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

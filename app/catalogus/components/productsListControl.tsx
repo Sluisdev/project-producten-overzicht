@@ -1,11 +1,11 @@
 "use client"
-
-import Header from './header'
-import ArrowBtn from "./arrowBtn"
-import Dropdown from "./dropDown"
+"@/app/catalogus/components"
+import Header from '@/app/catalogus/components/header'
+import ArrowBtn from "@/app/catalogus/components/arrowBtn"
+import Dropdown from "@/app/catalogus/components/dropDown"
 import { useRouter, useSearchParams, usePathname} from 'next/navigation'
 import {use, Suspense, useState} from 'react'
-import { FilterList, FilterValues, Categories } from '../lib/types'
+import { FilterList, FilterValues, Categories } from '@/app/catalogus/lib/types'
 
 export default function ProductListControl ({categories}:Categories) {
     const searchParams = useSearchParams()

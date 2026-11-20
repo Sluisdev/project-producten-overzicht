@@ -1,5 +1,5 @@
-import { capitalize, shortDescription, shortTitle } from "../lib/utils"
-import { ProductDetails } from "../lib/types"
+import { capitalize, shortDescription, shortTitle } from "@/app/catalogus/lib/utils"
+import { ProductDetails } from "@/app/catalogus/lib/types"
 export default function ProductCard ({details}:{details: ProductDetails}) {
 
     return (

@@ -1,5 +1,4 @@
 import {JSX} from 'react'
-import { copyrightYear } from '../catalogus/lib/utils'
 
 export function Footer ():JSX.Element {
     return (
