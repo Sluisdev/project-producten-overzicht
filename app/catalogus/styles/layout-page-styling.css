@@ -139,7 +139,7 @@ ul {
 
 .page-tsx {
   height: auto;
-  max-height: 250vh;
+  max-height: 300vh;
   width: 100%;
   border-top: 2px solid grey;
   display: grid;

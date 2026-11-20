@@ -253,11 +253,15 @@
         /* display: none; */
         z-index: 1;
         transform: translateX(-101%);
-        height: 75vh;
-        width: 20%;
-        position: fixed;
+        height: 90vh;
+        width: 30%;
+        /* position: fixed; */
         transition: transform 0.4s ease;
         
+    }
+
+    .list-item {
+        height: 5vh;
     }
 
     .pagination-container {
@@ -278,12 +282,12 @@
     .access-filters {
         display: block;
         position: relative;
-        height: 7%;
+        height: 8%;
         left: 110%;
         border-radius: 10px;
         border-style: none;
         padding: 0.3rem;
-        background-color: rgba(255, 255, 255, 0.753);
+        background-color: rgba(255, 255, 255, 0.836);
     }
 
      .access-filters > img {
