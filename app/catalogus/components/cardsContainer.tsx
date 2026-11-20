@@ -1,5 +1,5 @@
 import {getModifiedProducts, getAllProducts, paginate} from '@/app/catalogus/lib/utils'
-import ProductCard from './productCard'
+import ProductCard from '@/app/catalogus/components/productCard'
 import Pagination from '@/app/catalogus/components/pagination'
 import {SearchParams, Query} from '@/app/catalogus/lib/types'
 
@@ -12,7 +12,7 @@ export default async function Cards ({searchParams}:{searchParams: Partial<Query
     return (
         <section className="product-cards-container">
             {paginatedProducts.map(p => (<ProductCard key={p.id} details={p} />))}
-            <Pagination pages={parseInt(pages)} currentPage={currPage}/>
+            <Pagination pages={pages} currentPage={currPage}/>
         </section>
     )
 }

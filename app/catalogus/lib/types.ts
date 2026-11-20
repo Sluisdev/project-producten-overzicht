@@ -28,7 +28,7 @@ export type Paginated = {
 }
 
 export type Categories = {
-    categories: Promise<string[]> | string[]
+    categories: Promise<string[]>
 }
 
 export type FilterList = {

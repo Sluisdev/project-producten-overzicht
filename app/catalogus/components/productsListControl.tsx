@@ -52,7 +52,7 @@ export default function ProductListControl ({categories}:Categories) {
             
             <SearchField handleFilters={handleFilters} searchValue={filterValues.zoek}/>
             <Suspense fallback="loading...">
-                <Filter updateParams={updateParams} categories={categories} filterValues={filterValues} handleFilters={handleFilters} />
+                <Filter categories={categories} filterValues={filterValues} handleFilters={handleFilters} />
             </Suspense>
             <Sort filterValues={filterValues} handleFilters={handleFilters}/>
             <button onClick={handleReset} className="other-list-items reset-button">Reset</button>
@@ -94,7 +94,7 @@ function Sort ({filterValues, handleFilters}:Omit<FilterList, 'items' | 'name' |
     )
 }
 
-function Filter ({categories, filterValues, handleFilters}:Omit<FilterList, 'items' | 'name'> & {categories: Promise<string[]>} ) {
+function Filter ({categories, filterValues, handleFilters}:Omit<FilterList, 'items' | 'name' | 'searchValue'> & {categories: Promise<string[]>} ) {
     const name = "categorie"
     const allCategories = use(categories)
     return (
