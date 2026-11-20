@@ -1,15 +1,16 @@
 import {fetchData} from '@/app/catalogus/lib/data'
-import {Product, Query, ProductDetails, Paginated, Sort} from "./types"
+import {Product, Query, ProductDetails, Paginated, Sort} from "@/app/catalogus/lib/types"
 import { cacheLife, cacheTag } from 'next/cache'
 
 // levert alle producten aan
 export async function getAllProducts():Promise<ProductDetails[] | undefined> {
-    let products = await fetchData()
-    if (!products) {
-        console.error("Error getAllProducts, zie logs.")
-        return
+    try {
+        let products = await fetchData()
+         return products
+    } catch (error) {
+        console.error("Error getAllProducts, zie logs:", error)
+         return
     }
-    return products
 
 }
 
@@ -43,13 +44,16 @@ export function paginate (products:ProductDetails[], pageNr:number):Paginated {
 
 // Maakt eerst een nieuwe array met alle categorieën & gebruikt dan Set om een nieuwe Array te maken met alleen unieke waardes.
 export async function getCategories ():Promise<string[]> {
-    const data = await fetchData()
-    if (!data) {
-        console.error("Error in functie getCategories")
+    try {
+        const data = await fetchData()
+        const categories = typeof data === 'object' ? data.map(e => (e.category)) : []
+        return Array.from(new Set(categories))
+    } catch (e) {
+        console.error("Error in functie getCategories", e)
         return []
     }
-    const categories = data.map(e => (e.category))
-    return Array.from(new Set(categories))
+    
+    
 }
 
 export function capitalize(string: string):string {

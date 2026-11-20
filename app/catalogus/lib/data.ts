@@ -1,5 +1,5 @@
 import { cacheLife, cacheTag } from "next/cache"
-import {Product, Query, ProductDetails, Paginated} from "./types"
+import {Product, Query, ProductDetails, Paginated} from "@/app/catalogus/lib/types"
 
 // Data fetching functie, wordt gecached om API calls te verminderen
 export async function fetchData():Promise<ProductDetails[] | undefined>{
