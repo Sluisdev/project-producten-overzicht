@@ -3,7 +3,7 @@ import {JSX} from 'react'
 export function Footer ():JSX.Element {
     return (
     <footer className="footer">
-        <p>©Copyright {new Date().getFullYear()} Peter van der Sluis</p>
+        <p>©Copyright 2026 Peter van der Sluis</p>
     </footer>)
 }
 
