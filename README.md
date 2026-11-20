@@ -1,26 +1,26 @@
-#Project Producten Overzicht
+# Project Producten Overzicht
 
 Dit Project is gebouwd met Next.js en TypeScript. 
 
 Het Project heeft als doel een overzicht met producten. Van elk product is de titel, omschrijving (deels), prijs & categorie zichtbaar. 
 
-##Features
+## Features
 
 1. Sorteren op basis van de prijs
 2. Filter per categorie
 3. Zoek op basis van naam
 4. Paginatie
 
-##Data & Filters
+## Data & Filters
 
-###Data
+### Data
 De Producten Data wordt opgehaald via de publieke API "https://fakestoreapi.com/", specifiek the GET All route /products. 
 
 De functie die deze data ophaald wordt gecached. Dit zorgt voor minder data aanvragen voor dezelfde data, wat resulteert in betere prestaties. 
 
 De 'cacheLife' is ingesteld op 'hours' dus de cache zal paar keer per dag ververst worden met nieuwe data. 
 
-###Filters
+### Filters
 
 Aan de linkerkant van het scherm kan een filter paneel gevonden worden. In dit paneel kan op prijs gesorteerd worden, gezocht op product naam, en filteren per categorie.
 
@@ -28,9 +28,9 @@ Filters worden toegepast doormiddel van query string parameters. Zodra één van
 
 Er is ook een mogelijkheid om de filters te resetten door op de knop 'reset' te klikken. 
 
-##Components
+## Components
 
-###Product Cards
+### Product Cards
 
 Met Next.Js is het uiteraard mogelijk om gebruik te maken van Server Components. In dit Project heb ik dit ook gedaan. 
 
@@ -38,17 +38,17 @@ De 'Cards' Component in 'cardsContainer.tsx' is een async server component. Dit 
 
 De API data is dan gebruikt om de 'ProductCard' componenten te generen. Dit zijn server components en worden dus ook door de server gegenereerd. 
 
-###Paginatie
+### Paginatie
 
 In de Cards component kan ook de 'Pagination'component gevonden worden. Door het toepassen van paginatie word niet direct de hele dataset gegenereerd, alleen een selectief nummer producten per pagina. 
 
-###ProductListControl
+### ProductListControl
 
 de 'ProductListControl' Component bevat de logica voor de filters. Dit is een Client Component zodat ik gebruik kan maken van useState en interactiviteit, zoals onClick. 
 
 In dit Component worden ook de query string parameters toegevoegd, geupdatet, of verwijderd. 
 
-##Styling
+## Styling
 
 Omdat de producten data meerdere categorieën bevat, heb ik gekozen voor een neutrale maar moderne uitstraling. 
 
