@@ -1,7 +1,11 @@
 import {JSX} from 'react'
+import { copyrightYear } from '../catalogus/lib/utils'
 
 export function Footer ():JSX.Element {
-    return <footer className="footer"></footer>
+    return (
+    <footer className="footer">
+        <p>©Copyright {new Date().getFullYear()} Peter van der Sluis</p>
+    </footer>)
 }
 
 export function Header ():JSX.Element {

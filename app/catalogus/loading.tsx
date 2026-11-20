@@ -1,3 +1,5 @@
 export default function Loading () {
-    return <p>loading...</p>
+    return <section className="loader"> </section>
 }
+
+/* HTML: <div class="loader"></div> */

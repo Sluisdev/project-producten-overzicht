@@ -1,0 +1,39 @@
+.not-found {
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.hero {
+    display: none;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+    font-size: clamp(1.5rem, 2vw, 2rem);
+}
+
+.error > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    height: 75%;
+    width: 50%;
+}
+.error img {
+    height: 75%;
+    width: 10%;
+}
+
+.error > button {
+ border-style: 1px solid black;
+ border-radius: 5px;
+ padding: 0.2rem;
+ font-size: clamp(1.1rem, 1.2vw, 1.8rem);
+}

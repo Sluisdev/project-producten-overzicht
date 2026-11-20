@@ -1,25 +1,25 @@
 "use client"
 
-import Dropdown from "./Dropdown"
-import Header from './HeaderDropdown'
-import '@/app/catalogus/styles/productListControls.css'
-
+import Header from './header'
+import ArrowBtn from "./arrowBtn"
+import Dropdown from "./dropDown"
 import { useRouter, useSearchParams, usePathname} from 'next/navigation'
 import {use, Suspense, useState} from 'react'
+import { FilterList, FilterValues, Categories } from '../lib/types'
 
-
-
-
-export default function ProductListControl ({categories}) {
+export default function ProductListControl ({categories}:Categories) {
     const searchParams = useSearchParams()
     const {replace} = useRouter()
     const pathname = usePathname()
     const values = {filter: "", sorteer: "", zoek: ""}
     const [filterValues, setFilterValues] = useState(values)
+    const [showFilters, setShowFilters] = useState(false)
     const updateParams = (paramName:string, value: string | false) => {
         
         const params = new URLSearchParams(searchParams)
         if (value && value.length >= 3) {
+            // altijd de page op 1 zetten wanneer een filter wordt toegepast
+            params.set("page", '1') 
             params.set(paramName, value)
         }  else {
             params.delete(paramName)
@@ -37,22 +37,34 @@ export default function ProductListControl ({categories}) {
         replace(pathname)
     }
     return (
-        <section className="list-control-container border">
+        <section className={showFilters ? "show-filters list-control-container" : "list-control-container"}>
+            <button 
+                className="access-filters"
+                onClick={() => setShowFilters(!showFilters)}
+                >
+                <img src="/tune.svg" alt="" />
+                
+            </button>
+            <div className="list-control-header filters-header">
+                <h2>Filters</h2>
+                <img src="/tune.svg" alt="" />
+            </div>
+            
             <SearchField handleFilters={handleFilters} searchValue={filterValues.zoek}/>
             <Suspense fallback="loading...">
                 <Filter updateParams={updateParams} categories={categories} filterValues={filterValues} handleFilters={handleFilters} />
             </Suspense>
-            <Sort updateParams={updateParams} filterValues={filterValues} handleFilters={handleFilters}/>
+            <Sort filterValues={filterValues} handleFilters={handleFilters}/>
             <button onClick={handleReset} className="other-list-items reset-button">Reset</button>
         </section>
     )
 }
 
-function SearchField({handleFilters, searchValue}) {
+function SearchField({handleFilters, searchValue}:Omit<FilterList, 'items' | 'name' | 'filterValues'>) {
     const needMore = searchValue.length >= 1 && searchValue.length < 3 
     return (
         <section className="flex-list-control">
-            <Header name="zoek"/>
+            <Header name="zoek" className="list-control-header"/>
             <input 
                 type="text" 
                 placeholder="Zoek op product naam" 
@@ -63,7 +75,7 @@ function SearchField({handleFilters, searchValue}) {
                 className={needMore ? "border-error other-list-items" : "other-list-items"}
                 id="zoek"
                 />
-            {needMore && <p className={needMore ? "error-message" : ""}>minimaal 3 karakters nodig</p>}
+            {needMore && <p className={needMore ? "error-message other-list-items" : "other-list-items"}>Voer minimaal 3 karakters in</p>}
             
         </section>
         
@@ -71,24 +83,23 @@ function SearchField({handleFilters, searchValue}) {
 }
 
 
-function Sort ({updateParams, filterValues, handleFilters}) {
+function Sort ({filterValues, handleFilters}:Omit<FilterList, 'items' | 'name' | 'searchValue'>) {
     const values = ["oplopende prijzen", "aflopende prijzen"]
     const name = "sorteer" 
     return (
         <section className="flex-list-control">
-            <Header name={name}/>
+            <Header name={name} className="list-control-header"/>
             <Dropdown items={values} filterValues={filterValues} handleFilters={handleFilters} name={name}/>
         </section>
     )
 }
 
-function Filter ({categories, updateParams, filterValues, handleFilters}: {filterValues: {filter:string, sorteer:string, search: string}}) {
-    const name = "filter"
-    const allCategories:string[] | undefined = use(categories)
-
+function Filter ({categories, filterValues, handleFilters}:Omit<FilterList, 'items' | 'name'> & {categories: Promise<string[]>} ) {
+    const name = "categorie"
+    const allCategories = use(categories)
     return (
-    <section className="flex-list-control">
-        <Header name={name}/>
+    <section className="flex-list-control" >
+        <Header name={name} className="list-control-header"/>
         <Dropdown items={allCategories} filterValues={filterValues} handleFilters={handleFilters} name={name}/>
 
     </section>

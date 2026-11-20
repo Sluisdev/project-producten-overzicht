@@ -1,5 +1,7 @@
 import { capitalize, shortDescription, shortTitle } from "../lib/utils"
-export default function ProductCard ({details}) {
+import { ProductDetails } from "../lib/types"
+export default function ProductCard ({details}:{details: ProductDetails}) {
+
     return (
         <li className="product-card">
             <section className="img-container">

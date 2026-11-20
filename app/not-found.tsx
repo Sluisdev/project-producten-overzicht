@@ -1,5 +1,10 @@
+import "@/app/catalogus/styles/error.css"
 export default function NotFound() {
     return (
-        <p>404, Page not found</p>
+        <section className="not-found">
+            <p>404, Page not found</p>
+            <a href="/catalogus"> Go back home</a>
+        </section>
+        
     )
 }

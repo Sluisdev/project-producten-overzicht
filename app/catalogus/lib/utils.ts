@@ -1,6 +1,8 @@
 import {fetchData} from '@/app/catalogus/lib/data'
 import {Product, Query, ProductDetails, Paginated, Sort} from "./types"
+import { cacheLife, cacheTag } from 'next/cache'
 
+// levert alle producten aan
 export async function getAllProducts():Promise<ProductDetails[] | undefined> {
     let products = await fetchData()
     if (!products) {
@@ -11,15 +13,14 @@ export async function getAllProducts():Promise<ProductDetails[] | undefined> {
 
 }
 
-// deze functie levert alle producten in een Array aan. Als de relevante properties aanwezig zijn in 'query', 
-// worden de filter, sort of zoek functies ge-called. 'paginate' wordt altijd ge-called om maar een selectie producten aan te leveren.
-export async function getModifiedProducts(query: Query):Promise<ProductDetails[] | undefined> {
+//Wanneer filter, sorteer, en/of de zoek functies gebruikt worden, levert deze functie de gemodificeerde data terug. 
+export async function getModifiedProducts(query: Partial<Query>):Promise<ProductDetails[] | undefined> {
     let products = await fetchData()
     if (!products) {
         console.error("Error getModifiedProducts, zie logs.")
         return
     }
-    if (query.filter) products = filter(products, query.filter)
+    if (query.categorie) products = filter(products, query.categorie)
     if (query.zoek) products = search(products, query.zoek)
     if (query.sorteer) products = sort(products, query.sorteer)
     console.log("products returned after modifications & pagination:", products)
@@ -27,10 +28,9 @@ export async function getModifiedProducts(query: Query):Promise<ProductDetails[]
 
 }
 
-// pageNr heeft een default value of 1 als deze parameter niet meegegeven is
-// Hoeveel items zitten er in een array? Wat gebeurd er als de eind index groter is als de lengte van de array? 
-export function paginate (products:ProductDetails[], pageNr:number = 1):Paginated {
-    const productsPerPage = 8
+// Deze functie geeft alleen het deel van de product data terug op basis van de pagina nummer. 
+export function paginate (products:ProductDetails[], pageNr:number):Paginated {
+    const productsPerPage = 8 // Zou mooier zijn om dit progammatisch te bepalen op basis van scherm grote.
     const endIndex = productsPerPage * pageNr
     const startIndex = endIndex - productsPerPage
     return {
@@ -40,37 +40,46 @@ export function paginate (products:ProductDetails[], pageNr:number = 1):Paginate
     }
 }
 
-export async function getCategories () {
+
+// Maakt eerst een nieuwe array met alle categorieën & gebruikt dan Set om een nieuwe Array te maken met alleen unieke waardes.
+export async function getCategories ():Promise<string[]> {
     const data = await fetchData()
     if (!data) {
         console.error("Error in functie getCategories")
-        return
+        return []
     }
     const categories = data.map(e => (e.category))
     return Array.from(new Set(categories))
 }
 
-export function capitalize(string: string) {
+export function capitalize(string: string):string {
     return `${string.slice(0, 1).toUpperCase()}${string.slice(1, string.length)}`
 }
 
-export function shortDescription(string: string) {
+export function shortDescription(string: string):string {
     return `${string.slice(0, 150)}.....`
 }
 
-export function shortTitle(string: string) {
+export function shortTitle(string: string):string {
     const result = string.split(" ").slice(0, 3).join(" ")
     return result
 }
 
+export function copyrightYear():string {
+    return new Date().getFullYear.toString()
+} // moet ge-prerendered worden voordat deze in een Component gebruikt kan worden. 
+
+// filtered product data per gegeven categorie
 function filter(products:ProductDetails[], filter:string) {
     return products.filter(p => (p.category === filter))
 }
 
+// filtered product data per gegeven zoek term
 function search (products:ProductDetails[], term:string) {
     return products.filter(p => (p.title.toLowerCase().includes(term.toLowerCase())))
 }
 
+// sorteert product data op basis van prijs
 function sort (products:ProductDetails[], order:string) {
     const splitIndex = order.indexOf(" ")
     const isDescening = order.slice(0, splitIndex - 1) === "aflopend"

@@ -1,0 +1,115 @@
+.list-control-container {
+  grid-area: 2/1/4/1;
+  justify-self: flex-start;
+  width: 75%;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 0.7rem 0.7rem 0.7rem 0rem;
+  gap: 1.8rem;
+  border-radius: 0px 5px 5px 0px;
+  box-shadow: 0px 0px 4px 0px;
+  background-color: white;
+  border: solid grey 1px
+}
+
+.access-filters {
+    display: none;
+}
+
+.filters-header {
+    border-bottom: 2px solid #bf934151;
+    padding-bottom: 0.3rem;
+    margin-left: 0.3rem;
+}
+
+.list-control-header {
+    display: flex;
+    align-items: center;
+    gap: 0.2rem;
+    width: 100%;
+}
+
+.list-control-header > img {
+    order: 0;
+}
+
+.list-control-header > h2 {
+    order: 1;
+} 
+
+.error-message {
+    color: red;
+}
+
+.border-error {
+    border-color: red;
+}
+
+.flex-list-control {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    height: fit-content;
+    width: 100%;
+}
+
+.flex-list-control input {
+    height: 2.5vh;
+}
+
+.list-item {
+    background-color: rgb(207, 205, 205);
+    width: 100%;
+    height: 3vh;
+    padding: 0.2rem;
+    text-align: center;
+    border-radius: 0px 5px 5px 0px;
+    
+}
+
+.drop-down {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+
+.list-item:hover {
+    background-color: rgb(198, 198, 198);
+}
+
+.other-list-items {
+    width: 100%;
+    margin-left: 0.3rem;
+    padding: 0.15rem;
+}
+
+.reset-button {
+    align-self: center;
+    width: 75%;
+    height: 3vh;
+}
+
+.filter-item {
+    /* border-bottom: 2px solid rgba(128, 128, 128, 0.505); */
+    width: 100%;
+    padding: 0.2rem 0.2rem;
+
+}
+
+.selected {
+    /* color: green; */
+    background-color: black;
+    color: white;
+    border-right: 1px solid #0d7cb3;
+    border-bottom: 1px solid #0d7cb3;
+    border-top: 1px solid #0d7cb3;
+}
+
+.selected:hover {
+    background-color: black;
+
+}
+

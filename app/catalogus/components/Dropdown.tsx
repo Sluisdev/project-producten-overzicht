@@ -1,6 +1,8 @@
-export default function Dropdown ({items, filterValues, handleFilters, name}:any) {
+import {FilterList} from "@/app/catalogus/lib/types"
+
+export default function Dropdown ({items, filterValues, handleFilters, name}:Omit<FilterList, 'searchValue'>) {
     return (
-        <ul className="drop-down flex-list-control">
+        <ul className="drop-down">
             {items && items.map((el:string) => {
                 const selected = filterValues[name] === el
                 //Eerste letter verandered naar een hoofdletter.
