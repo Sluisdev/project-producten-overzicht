@@ -1,8 +1,8 @@
 "use client"
 "@/app/catalogus/components"
 import Header from '@/app/catalogus/components/header'
-import ArrowBtn from "@/app/catalogus/components/arrowBtn"
-import Dropdown from "@/app/catalogus/components/dropDown"
+import ArrowBtn from "@/app/catalogus/components/ArrowBtn"
+import Dropdown from "@/app/catalogus/components/DropDown"
 import { useRouter, useSearchParams, usePathname} from 'next/navigation'
 import {use, Suspense, useState} from 'react'
 import { FilterList, FilterValues, Categories } from '@/app/catalogus/lib/types'

@@ -1,4 +1,4 @@
-import ArrowBtn from "@/app/catalogus/components/arrowBtn";
+import ArrowBtn from "@/app/catalogus/components/ArrowBtn";
 
 export default function Header ({name, className}:{name: string, className: string}) {
 
